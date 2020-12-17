@@ -30,7 +30,13 @@ class Character:
         self.exp = exp
 
     def attack(self, target):
-        target.hp = target.hp - self.atk + self.defence
+        if target.defence > self.atk:
+            self.atk = 0
+            target.defence = 0
+        target.hp = target.hp - self.atk + target.defence
+        dmg = abs(target.defence - self.atk)
+
+        print(f"\n{self.name} hits {target.name} for {dmg} \n")
 
     def death(self):
         if self.hp <= 0:
@@ -39,7 +45,7 @@ class Character:
     def stat(self):
         print('\n')
         print(f"{'Menu':=^32}")
-        print(f'Name: {self.name}' + f"{f'Atk: {self.atk}':>18}")
+        print(f'Name: {self.name}' + f"{f'Atk: {self.atk}':>12} Def: {self.defence}")
         print('=' * 32)
         print(f"Hp: {self.hp}/{self.maxhp}" + f'{f"Mp: {self.mp}/{self.maxmp}":>19}')
         print('=' * 32)
@@ -101,10 +107,17 @@ class Hero(Character):
         print(f"{'Menu':=^32}")
         print(f'Name: {self.name:15} / Lvl: {self.lvl}')
         print('=' * 32)
-        print({f'Hp: {self.hp}/{self.maxhp}' + " " * 5 + f'Mp: {self.mp}/{self.maxmp}'})
+        print(f"{f'Hp: {self.hp}/{self.maxhp}':>15}" + " " * 5 + f'Mp: {self.mp}/{self.maxmp}')
         print('=' * 32)
-        print(f'Atk: {self.atk}' + ' ' * 5 + f'| Exp needed: {self.exp}/{self.maxexp}')
+        print(f'Atk: {self.atk}  Def: {self.defence}' + ' ' * 5 + f'| Exp: {self.exp}/{self.maxexp}')
         print('=' * 32)
-        print(f"{f'Equipment: {self.equip[0]}':^32}")
+        print(f"{f'Equipment: {self.equip}':^32}")
         print('=' * 32)
 
+
+"""hero = Hero(name='Asarmir', hp=12, maxhp=12, mp=1, maxmp=1, atk=5, defence=10, inventory={None}, lvl=1, exp=0,maxexp= 25, equip={'Wooden Sword': 5})
+monster = Character('Goblin', 100, 100, 5, 5, 20, 10, {'dagger': 1}, exp=25)
+
+hero.stat()
+hero.attack(monster)
+monster.stat()"""

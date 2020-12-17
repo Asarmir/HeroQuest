@@ -54,51 +54,34 @@ def create_hero():
 def cls():
     os.system('cls' if os.name == 'nt' else 'clear')
 
-def act():
-    choice = input("Enter F: Fight or R: Run:\n")
-    if choice == "R".lower():
-        print("You haul tail and run away! No one has to know!")
-        if World.hold == True:
-            World.ig_map[World.org][World.userX] = "H"
-        elif World.hold == False:
-            World.ig_map[World.userY][World.org] = "H"
-    else:
-        battle()
-
-
-def battle():
+def battle(hero):
     fight = True
-    monsters = MonsterCreate.monster_choice()
     cls()
-
-
-    input(f"You decided to stand your ground like a man.\n"
-          f"{monsters.name} looks you in the face and snarls.\n"
-          f"the battle is on.\n"
-          f"Press enter to continue")
+    monsters = MonsterCreate.monster_choice()
 
     while fight:
         cls()
         choice = input("What do you wish to do? Fight: F Potion: P Run: R\n")
-        if choice == F.lower():
-            Hero.stat(Hero)
-            print(f"{Hero.name} hits {monster.name} for {Hero.attack(hero, monster)}")
-            monsters.stat(monsters)
-            if monsters.death(monsters):
+        if choice == "F".lower():
+            hero.stat()
+            hero.attack(monsters)
+
+            monsters.stat()
+            if monsters.death():
                 break
-                Hero.gain_exp(hero, monster)
+                hero.gain_exp(monsters)
             else:
                 continue
             cls()
-            monsters.stat(Monsters)
+            monsters.stat()
             print(f"{monsters.name} really didn't like that."
-                  f"so {monsters.name} hits you for {monsters.attack(monsters, hero)}")
-            Hero.stat(Hero)
-            if Hero.death(Hero):
+                  f"so {monsters.name} hits you for {monsters.attack(hero)}")
+            hero.stat()
+            if hero.death():
                 break
             else:
                 continue
-        elif choice == P.lower():
+        elif choice == "P".lower():
             print(f"You drink a potion.")
             Potion.heal_hero(Potion, Hero)
 
@@ -109,7 +92,7 @@ def main():
     cls()
     create_hero()
     cls()
-    hero = Hero(Hero.name, 12, 12, 1, 1, 5, 10, {}, 1, 0, 25, {})
+    hero = Hero(name=Hero.name, hp=12, maxhp=12, mp=1, maxmp=1, atk=25, defence=10, inventory={}, lvl=1, exp=0,maxexp= 25, equip={})
 
     input(f"Welcome {hero.name} to a world of magic.\n"
           f"You have just decided to leave your small town of Falkenville.\n"
@@ -118,6 +101,7 @@ def main():
           f"Press enter to continue.")
     """Map loop"""
     cls()
+
     moving = True
     World.hero_location()
     while moving:
@@ -126,7 +110,7 @@ def main():
         World.input_dir()
         World.hero_location()
         if World.event == True:
-            act()
+            battle(hero)
 
 
 if __name__ == "__main__":

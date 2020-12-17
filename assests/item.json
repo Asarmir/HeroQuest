@@ -6,14 +6,14 @@
             "name": "Wooden Sword",
             "description": "Craved with care.",
             "value": 0,
-            "atk": 5
+            "atk": 10
         }],
         "Basic_Sword":[
         {
             "name": "Basic Sword",
             "description": "Simple Sword.",
             "value": 0,
-            "atk": 15
+            "atk": 25
         }],
         "Skull_Splitter":[
         {
