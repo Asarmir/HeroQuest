@@ -1,0 +1,57 @@
+{
+  "Intro": [
+    {
+      "name": "intro",
+      "description": "You are the stud of the village. All sway under your charm. But you have always longed for more and your muscles twitch for the excitement of adventure. You have decided to leave your beloved home in search for more to life and so your Hero's Quest begins."
+    }],
+  "Falkner_Village": [
+    {
+      "name": "Falkner Village",
+      "description": "Has always been a quite and ordinary for a farming village. But it does hold dark secrets in it's pass. That still mar the land to this day.",
+    }],
+  "Rock_block": [
+    {
+      "name": "Boulder",
+      "description": "Strangely a giant boulder seems to be blocking your path. The trees and shrubs make it impossible to forge your way forward."
+    }],
+  "Goblin_battle": [
+    {
+      "name": "Goblin Battle",
+      "description": "You enter into a clear that is surrounded by trees. A goblin jumps out and attacks you."
+    }],
+  "Orge_battle": [
+    {
+      "name": "Orge Battle",
+      "description": "In the middle of this clearing you see a large Ogre snapping the remains of what seems to be a person in his mouth. It chews slowly this notices you and smiles grimly as it toss the remains away and comes towards you. 'Meat! I love meat!' It yells."
+    }],
+  "Two_children": [
+    {
+      "name": "Sally and Meg",
+      "description": "You stumble unpon the sounds of two children crying. You run to see the trouble and find two girls. Sally and Meg from your village. They tell you that their older brother Kyle was taken by a large cave worm. You calm them and send them home with the promise you will find their brother."
+    }],
+  "Cave": [
+    {
+      "name": "Cave",
+      "description": "Entering the cave you can smell the dank mossy stench of death. It's unsettling as you have been warned to stay away from this cave because it housed a ancient evil."
+    }],
+  "Spider_battle": [
+    {
+      "name": "Spider Battle",
+      "description": "You run smack into a dead end. Looking around you see alot of spider web and you get the feeling this was not the right turn for you. Looking up you see a gaint spider leaping towards you. Jumping out of the way you raise your weapon and prepare for battle."
+    }],
+  "Worm_battle": [
+    {
+      "name": "Cave Worm battle",
+      "description": "You hit a dead end when suddenly a gaint worm pops out of the ground. You can tell this is the same worm that took the boy but something seems off. The worm definitely has it out for you."
+    }],
+  "Demon_battle": [
+    {
+      "name": "Demon Battle",
+      "description": "Everything you faced has come down to this moment. The Demon wants to sacrifice Kyle to free himself of this imprisonment. You gallantly stroll up to the beast like greeting a old friend. 'It's time to pay the piper my friend and I am feeling like a Tax collector.' you smirk."
+    }],
+  "Kyle_fin": [
+    {
+      "name": "End Game",
+      "description": "Kyle thanks you for recusing him. You passively tell him it's no problem but to repay you for your service to tell everyone he meets how you have saved his life. Your life as an adventure has just began and with a demon kill under your belt. You feel the skies the limit."
+    }]
+}

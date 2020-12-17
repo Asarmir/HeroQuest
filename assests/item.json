@@ -1,0 +1,38 @@
+{
+    "Weapons":
+    {
+        "Wooden_Sword":[
+        {
+            "name": "Wooden Sword",
+            "description": "Craved with care.",
+            "value": 0,
+            "atk": 5
+        }],
+        "Basic_Sword":[
+        {
+            "name": "Basic Sword",
+            "description": "Simple Sword.",
+            "value": 0,
+            "atk": 15
+        }],
+        "Skull_Splitter":[
+        {
+            "name": "Skull Splitter",
+            "description": "A large double sided axe with more than enough weight to split a man's skull in two.",
+            "value": 0,
+            "atk": 115
+        }]
+    },
+    "Potions":
+    {
+       "Basic Potion":[
+        {
+            "name": "Basic Potion",
+            "description": "Just enough healing to not make it hurt.",
+            "value": 0,
+            "heal": 10
+        }]
+    }
+
+}
+
