@@ -54,6 +54,7 @@ def create_hero():
 def cls():
     os.system('cls' if os.name == 'nt' else 'clear')
 
+
 def battle(hero):
     fight = True
     cls()
@@ -64,26 +65,34 @@ def battle(hero):
         choice = input("What do you wish to do? Fight: F Potion: P Run: R\n")
         if choice == "F".lower():
             hero.stat()
+            if hero.hp <= 0:
+                hero.death()
+                break
             hero.attack(monsters)
-
             monsters.stat()
-            if monsters.death():
-                break
+            if monsters.hp <= 0:
+                monsters.death()
                 hero.gain_exp(monsters)
-            else:
-                continue
-            cls()
-            monsters.stat()
-            print(f"{monsters.name} really didn't like that."
-                  f"so {monsters.name} hits you for {monsters.attack(hero)}")
-            hero.stat()
-            if hero.death():
+                World.ig_map[World.userY][World.userX] = "H"
+                input("Press enter to continue")
                 break
+
             else:
-                continue
+                cls()
+
+                input(f"{monsters.name} growls and lashes out.")
+                hero.stat()
+                monsters.attack(hero)
+                monsters.stat()
+
+
         elif choice == "P".lower():
             print(f"You drink a potion.")
             Potion.heal_hero(Potion, Hero)
+        else:
+            continue
+
+"""def adventure(hero):"""
 
 
 def main():
@@ -92,7 +101,7 @@ def main():
     cls()
     create_hero()
     cls()
-    hero = Hero(name=Hero.name, hp=12, maxhp=12, mp=1, maxmp=1, atk=25, defence=10, inventory={}, lvl=1, exp=0,maxexp= 25, equip={})
+    hero = Hero(name=Hero.name, hp=12, maxhp=12, mp=1, maxmp=1, atk=80, defence=10, inventory={}, lvl=1, exp=0,maxexp= 25, equip={})
 
     input(f"Welcome {hero.name} to a world of magic.\n"
           f"You have just decided to leave your small town of Falkenville.\n"
@@ -101,7 +110,6 @@ def main():
           f"Press enter to continue.")
     """Map loop"""
     cls()
-
     moving = True
     World.hero_location()
     while moving:
@@ -109,8 +117,10 @@ def main():
         World.draw_map()
         World.input_dir()
         World.hero_location()
-        if World.event == True:
+        if World.event and World.atk == True:
             battle(hero)
+
+
 
 
 if __name__ == "__main__":

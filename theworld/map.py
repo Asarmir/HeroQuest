@@ -29,6 +29,7 @@ class World:
     org = None
 
     event = False
+    atk = True
 
     ### Creates the map and has to be redraw with the updated position of the hero. ###
     @staticmethod
@@ -88,26 +89,26 @@ class World:
             World.hold = False
             World.org = World.userX - 1
 
-
     @staticmethod
     def actions():
 
         if World.ig_map[World.userY][World.userX] == "-":
             print("\nI can't move here!\n")
+            World.atk = False
             World.pause_it()
+
         elif World.ig_map[World.userY][World.userX] == "R":
             print("\nThere is a huge boulder in the way. You whistle has you walk off to a new direction.")
             World.userY += 1
             World.ig_map[World.userY][World.userX] = "H"
-            World.pause_it()
-        elif World.ig_map[World.userY][World.userX] == "P":
-            print("Your grin couldn't be bigger. You hit the jack pot. You found 5 health potions.")
+            World.atk = False
             World.pause_it()
 
         elif World.ig_map[World.userY][World.userX] == "C":
             print("You enter the nastiest smelling cave ever."
                   "You really want to back out but every hero needs a intro story."
                   "So you press forward holding your nose as danger allows.")
+            World.atk = False
             World.pause_it()
 
         elif World.ig_map[World.userY][World.userX] == "W":
@@ -115,6 +116,7 @@ class World:
                   "You swear it was Petey your pet worm from your childhood."
                   "To bad this worm is coming in for the kill."
                   "FIGHT!")
+            World.atk = True
             World.pause_it()
 
         elif World.ig_map[World.userY][World.userX] == "M":
@@ -128,25 +130,29 @@ class World:
                   "'Oh you are to kind I almost done want to kill you now.'"
                   "You smack your head duh he's evil that wouldn't bother him."
                   "FIGHT!")
+            World.atk = True
             World.pause_it()
 
-        elif World.ig_map[World.userY][World.userX] == "P":
+        elif World.ig_map[World.userY][World.userX] == "B":
             print("See a young teenager pass out on the ground."
                   "You kick him with your foot and he stirs."
                   "He wakes up and cries thanking you for saving his life."
                   "You request that all he has to do to repay you is tell everyone what happen."
                   "The boy agreed and ran off to tell everyone in the village."
                   "Now you got your first title. HERO! and your quest has just begun.")
+            World.atk = False
             World.pause_it()
 
         elif World.ig_map[World.userY][World.userX] == "O":
             print("You see a Ogre sitting by a fire BBQing a corpse. "
                   "You decide to come out laughing to see if you can scare the beast."
                   " It glares at you annoyingly making your smile even bolder. FIGHT!!")
+            World.atk = True
             World.pause_it()
 
         elif World.ig_map[World.userY][World.userX] == "P":
             print("Your grin couldn't be bigger. You hit the jack pot. You found 5 health potions.")
+            World.atk = False
             World.pause_it()
 
         elif World.ig_map[World.userY][World.userX] == "T":
@@ -154,17 +160,20 @@ class World:
                   "They are crying and shaking so you ask them what's up."
                   "They tell you the sad story about their brother being dragged into the cave."
                   "So you decide to go in and recuse him.")
+            World.atk = False
             World.pause_it()
 
         elif World.ig_map[World.userY][World.userX] == "G":
             print("\nA goblin jumps out from behind the brush. "
                   "You got a fight on your hands and your ready to show your stuff!\n")
+            World.atk = True
             World.pause_it()
 
         elif World.ig_map[World.userY][World.userX] == "S":
             print("You just met the biggest spider of you life!"
                   " You wanted to call it fido."
                   " But it did not take kindly to that name. It attacks you!")
+            World.atk = True
             World.pause_it()
 
         elif World.ig_map[World.userY][World.userX] == "T":
@@ -172,12 +181,9 @@ class World:
                   "They are crying and shaking so you ask them what's up."
                   "They tell you the sad story about their brother being dragged into the cave."
                   "So you decide to go in and recuse him.")
+            World.atk = False
             World.pause_it()
 
     @staticmethod
     def pause_it():
         input("Press ENTER to continue.")
-
-
-
-

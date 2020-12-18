@@ -6,7 +6,7 @@ class MonsterCreate:
 
     @staticmethod
     def monster_choice():
-        Goblin = Character('Goblin', hp=100, maxhp=100, mp=5, maxmp=5, atk=20, defence=10, inventory={'Basic Sword': 1},
+        Goblin = Character('Goblin', hp=100, maxhp=100, mp=5, maxmp=5, atk=10, defence=10, inventory={'Basic Sword': 1},
                            exp=25)
         Ogre = Character('Orge', hp=250, maxhp=250, mp=5, maxmp=5, atk=45, defence=60, inventory={'Skull Splitter': 1},
                          exp=75)
