@@ -31,7 +31,8 @@ class Weapon(Item):
 
 
 class Potion(Item):
-    def __init__(self, name, description, value, heal):
+    def __init__(self, name, description, value, heal, quantity):
+        self.quantity = quantity
         self.heal = heal
         Item.__init__(self, name, description, value)
 

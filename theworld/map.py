@@ -25,9 +25,7 @@ class World:
     userY = 17
     userX = 4
 
-    hold = None
     org = None
-
     event = False
     atk = True
 
@@ -64,7 +62,6 @@ class World:
         if direction == "W".lower():
             World.ig_map[World.userY][World.userX] = " "
             World.userY -= 1
-            World.hold = True
             World.org = World.userY + 1
 
 
@@ -72,21 +69,18 @@ class World:
         elif direction == "S".lower():
             World.ig_map[World.userY][World.userX] = " "
             World.userY += 1
-            World.hold = True
             World.org = World.userY - 1
 
         ######## Move Left #############
         elif direction == "A".lower():
             World.ig_map[World.userY][World.userX] = " "
             World.userX -= 1
-            World.hold = False
             World.org = World.userX + 1
 
         ######## Move Right #############
         elif direction == "D".lower():
             World.ig_map[World.userY][World.userX] = " "
             World.userX += 1
-            World.hold = False
             World.org = World.userX - 1
 
     @staticmethod

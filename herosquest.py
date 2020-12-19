@@ -101,7 +101,7 @@ def main():
     cls()
     create_hero()
     cls()
-    hero = Hero(name=Hero.name, hp=12, maxhp=12, mp=1, maxmp=1, atk=80, defence=10, inventory={}, lvl=1, exp=0,maxexp= 25, equip={})
+    hero = Hero(name=Hero.name, hp=12, maxhp=12, mp=1, maxmp=1, atk=80, defence=10, inventory=[], lvl=1, exp=0,maxexp= 25, equip={})
 
     input(f"Welcome {hero.name} to a world of magic.\n"
           f"You have just decided to leave your small town of Falkenville.\n"

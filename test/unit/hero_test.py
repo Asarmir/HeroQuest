@@ -1,9 +1,10 @@
 from unittest import TestCase
-import users.char
+from users.char import Character
+from users.char import Hero
 
 class CharacterTest(TestCase):
     def test_create_monster(self):
-        monster = Character('Goblin', 100, 100, 5, 5, 20, 10, {'dagger': 1})
+        monster = Character('Goblin', 100, 100, 5, 5, 20, 10, {'dagger': 1}, 25)
 
         self.assertEqual('Goblin', monster.name)
         self.assertEqual(100, monster.hp)

@@ -29,6 +29,10 @@ class Character:
         # monster need exp to give to hero's
         self.exp = exp
 
+    def remove_inventory(self):
+        drop_item = self.inventory.popitem()
+        return drop_item
+
     def attack(self, target):
         if target.defence > self.atk:
             self.atk = 0
@@ -71,8 +75,12 @@ class Hero(Character):
         # Holds players items equip is item in hand
         self.equip = equip
 
-    def defend(self, defence):
-        pass
+    def add_inventory(self,drop_item):
+        self.inventory.append(drop_item)
+
+    def equip_on(self):
+        print("Do you wish to equip this item?")
+        
 
     def run_away(self):
         pass
