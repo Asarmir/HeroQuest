@@ -38,6 +38,8 @@ class Character:
             self.atk = 0
             target.defence = 0
         target.hp = target.hp - self.atk + target.defence
+        if target.hp <= 0:
+            target.hp = 0
         dmg = abs(target.defence - self.atk)
 
         print(f"\n{self.name} hits {target.name} for {dmg} \n")

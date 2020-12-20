@@ -1,6 +1,6 @@
 class World:
     ig_map = [
-        ##### X   0    1    2    3    4    5    6    7    8    9  #### Y
+##### X   0    1    2    3    4    5    6    7    8    9  #### Y
         ['-', '-', '-', '-', '-', '-', '-', '-', '-', '-'],  # 0
         ['-', 'B', '-', '-', '-', '-', '-', '-', '-', '-'],  # 1
         ['-', 'M', '-', '-', 'W', '-', '-', '-', '-', '-'],  # 2
@@ -28,6 +28,7 @@ class World:
     org = None
     event = False
     atk = True
+    setuser = None
 
     ### Creates the map and has to be redraw with the updated position of the hero. ###
     @staticmethod
@@ -48,6 +49,17 @@ class World:
         if World.ig_map[World.userY][World.userX] == " ":
             World.ig_map[World.userY][World.userX] = "H"
             World.event = False
+        elif World.ig_map[World.userY][World.userX] == "-":
+            World.ig_map[World.userY][World.userX] = "-"
+            if World.setuser == "userY":
+                World.userY = World.org
+            else:
+                World.userX = World.org
+            World.ig_map[World.userY][World.userX] = "H"
+            print("\nI can't move here!\n")
+            World.atk = False
+            World.pause_it()
+
         else:
             World.event = True
             World.actions()
@@ -63,6 +75,7 @@ class World:
             World.ig_map[World.userY][World.userX] = " "
             World.userY -= 1
             World.org = World.userY + 1
+            World.setuser = "userY"
 
 
         ###### Move Down ###############
@@ -70,28 +83,26 @@ class World:
             World.ig_map[World.userY][World.userX] = " "
             World.userY += 1
             World.org = World.userY - 1
+            World.setuser = "userY"
 
         ######## Move Left #############
         elif direction == "A".lower():
             World.ig_map[World.userY][World.userX] = " "
             World.userX -= 1
             World.org = World.userX + 1
+            World.setuser = "userX"
 
         ######## Move Right #############
         elif direction == "D".lower():
             World.ig_map[World.userY][World.userX] = " "
             World.userX += 1
             World.org = World.userX - 1
+            World.setuser = "userX"
 
     @staticmethod
     def actions():
 
-        if World.ig_map[World.userY][World.userX] == "-":
-            print("\nI can't move here!\n")
-            World.atk = False
-            World.pause_it()
-
-        elif World.ig_map[World.userY][World.userX] == "R":
+        if World.ig_map[World.userY][World.userX] == "R":
             print("\nThere is a huge boulder in the way. You whistle has you walk off to a new direction.")
             World.userY += 1
             World.ig_map[World.userY][World.userX] = "H"

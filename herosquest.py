@@ -67,6 +67,7 @@ def battle(hero):
             hero.stat()
             if hero.hp <= 0:
                 hero.death()
+                input("What!!!")
                 break
             hero.attack(monsters)
             monsters.stat()
@@ -81,9 +82,19 @@ def battle(hero):
                 cls()
 
                 input(f"{monsters.name} growls and lashes out.")
-                hero.stat()
                 monsters.attack(hero)
+                hero.stat()
+                if hero.hp <= 0:
+                    hero.death()
+                    input("What!!!")
+                    break
                 monsters.stat()
+                if monsters.hp <= 0:
+                    monsters.death()
+                    hero.gain_exp(monsters)
+                    World.ig_map[World.userY][World.userX] = "H"
+                    input("Press enter to continue")
+                    break
 
 
         elif choice == "P".lower():
@@ -119,6 +130,8 @@ def main():
         World.hero_location()
         if World.event and World.atk == True:
             battle(hero)
+        else:
+            World.atk = False
 
 
 
