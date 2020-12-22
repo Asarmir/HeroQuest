@@ -19,8 +19,8 @@ def json_load(filepath, filename):
 def create_item():
     item_data = json_load('assests', 'item')
     return item_data
-    """for item in item_data["Weapons"]["Basic_Sword"]:
-        print(item['description'])"""
+    """for item in item_data["Potions"]["Basic Potion"]:
+        print(item['Basic Potion'])"""
 
 
 def title():
@@ -103,7 +103,19 @@ def battle(hero):
         else:
             continue
 
-"""def adventure(hero):"""
+
+def pick_item(hero, drop_item):
+
+    if World.ig_map[World.userY][World.userX] == "P":
+        choice = input("Do you wish to pick up item? Yes: Y or No: N \n")
+        if choice == "Y".lower():
+            hero.add_inventory(drop_item["name"])
+            World.ig_map[World.userY][World.userX] = "H"
+            print(hero.inventory)
+            input("Yup")
+
+        if choice == "N".lower():
+            print(f"You decide against picking up {drop_item['Basic Potion']}")
 
 
 def main():
@@ -112,14 +124,16 @@ def main():
     cls()
     create_hero()
     cls()
-    hero = Hero(name=Hero.name, hp=12, maxhp=12, mp=1, maxmp=1, atk=80, defence=10, inventory=[], lvl=1, exp=0,maxexp= 25, equip={})
+    hero = Hero(name=Hero.name, hp=12, maxhp=12, mp=1, maxmp=1, atk=80, defence=10, inventory=[], lvl=1, exp=0,
+                maxexp=25, equip={})
 
     input(f"Welcome {hero.name} to a world of magic.\n"
           f"You have just decided to leave your small town of Falkenville.\n"
           f"You have a can do attitude for fame and fortune.\n"
           f"Flexing your bicep you feel ready to take on any monsters.\n"
+    
           f"Press enter to continue.")
-    """Map loop"""
+    
     cls()
     moving = True
     World.hero_location()
@@ -130,10 +144,14 @@ def main():
         World.hero_location()
         if World.event and World.atk == True:
             battle(hero)
+        elif World.event == True and World.atk == False:
+            item_data = create_item()
+            for item in item_data["Potions"]["Basic Potion"]:
+                drop_item = item
+
+            pick_item(hero, drop_item)
         else:
             World.atk = False
-
-
 
 
 if __name__ == "__main__":

@@ -57,7 +57,9 @@ class Character:
         print('=' * 32)
 
     def __str__(self):
-        return (f"{self.name}, {self.hp}, {self.maxhp}, {self.mp}, {self.maxmp}, {self.atk}, {self.defence}, {self.inventory}, {self.exp}")
+        return (
+            f"{self.name}, {self.hp}, {self.maxhp}, {self.mp}, {self.maxmp}, {self.atk}, {self.defence}, {self.inventory}, {self.exp}")
+
 
 """
     This creates the hero. Adding class with starter skills could an idea or a skill class.
@@ -77,12 +79,11 @@ class Hero(Character):
         # Holds players items equip is item in hand
         self.equip = equip
 
-    def add_inventory(self,drop_item):
+    def add_inventory(self, drop_item):
         self.inventory.append(drop_item)
 
     def equip_on(self):
-        print("Do you wish to equip this item?")
-        
+        input("Do you wish to equip this item? Yes: Y or No: N \n")
 
     def run_away(self):
         pass
@@ -103,7 +104,7 @@ class Hero(Character):
         self.hp = self.hp * 2
         self.max = self.hp * 2
         self.mp = self.mp * 2
-        self.maxmp = self.maxmp *2
+        self.maxmp = self.maxmp * 2
         self.atk = self.atk * 2
         self.defence = self.defence * 2
         print(f"Your health is now: {self.hp}/{self.maxhp}"
