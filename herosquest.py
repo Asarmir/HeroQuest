@@ -16,11 +16,13 @@ def json_load(filepath, filename):
     return data
 
 
-def create_item():
+def create_item(types, name):
     item_data = json_load('assests', 'item')
-    return item_data
-    """for item in item_data["Potions"]["Basic Potion"]:
-        print(item['Basic Potion'])"""
+
+    item = item_data[types][name]
+    for val in item:
+        stuff = list(val.values())
+        return stuff
 
 
 def title():
@@ -96,29 +98,33 @@ def battle(hero):
                     input("Press enter to continue")
                     break
 
-
         elif choice == "P".lower():
             print(f"You drink a potion.")
-            Potion.heal_hero(Potion, Hero)
+            Potion.heal_hero(Hero)
         else:
             continue
 
 
 def pick_item(hero, drop_item):
-
     if World.ig_map[World.userY][World.userX] == "P":
         choice = input("Do you wish to pick up item? Yes: Y or No: N \n")
         if choice == "Y".lower():
-            hero.add_inventory(drop_item["name"])
+            hero.add_inventory(drop_item)
             World.ig_map[World.userY][World.userX] = "H"
-            print(hero.inventory)
-            input("Yup")
+            print(f"You picked up {hero.inventory[0].name} {hero.inventory[0].description}")
+            World.pause_it()
 
         if choice == "N".lower():
             print(f"You decide against picking up {drop_item['Basic Potion']}")
 
 
 def main():
+    """item = create_item('Weapons', 'Wooden_Sword')
+    Woodswd = Weapon(item[0], item[1], item[2], item[3])
+    This is how we create items using the function above.
+    """
+
+
     cls()
     title()
     cls()
@@ -131,7 +137,6 @@ def main():
           f"You have just decided to leave your small town of Falkenville.\n"
           f"You have a can do attitude for fame and fortune.\n"
           f"Flexing your bicep you feel ready to take on any monsters.\n"
-    
           f"Press enter to continue.")
     
     cls()
@@ -145,10 +150,9 @@ def main():
         if World.event and World.atk == True:
             battle(hero)
         elif World.event == True and World.atk == False:
-            item_data = create_item()
-            for item in item_data["Potions"]["Basic Potion"]:
-                drop_item = item
-
+            pot = create_item('Potions', 'Basic Potion')
+            pot = Potion(pot[0], pot[1], pot[2], pot[3], pot[4])
+            drop_item = pot
             pick_item(hero, drop_item)
         else:
             World.atk = False
@@ -156,3 +160,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
