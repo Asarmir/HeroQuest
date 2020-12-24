@@ -6,21 +6,21 @@
             "name": "Wooden Sword",
             "description": "Craved with care.",
             "value": 0,
-            "atk": 10
+            "atk": 65
         }],
         "Basic_Sword":[
         {
             "name": "Basic Sword",
             "description": "Simple Sword.",
             "value": 0,
-            "atk": 25
+            "atk": 150
         }],
         "Skull_Splitter":[
         {
             "name": "Skull Splitter",
             "description": "A large double sided axe with more than enough weight to split a man's skull in two.",
             "value": 0,
-            "atk": 115
+            "atk": 300
         }]
     },
     "Potions":

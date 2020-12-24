@@ -2,6 +2,7 @@
     Character Class is the base class and used to create monsters.
     Also could add a skill class so monsters could hit harder.
 """
+from assests.items import Weapon
 
 
 class Character:
@@ -30,8 +31,8 @@ class Character:
         self.exp = exp
 
     def remove_inventory(self):
-        drop_item = self.inventory.popitem()
-        return drop_item
+        spoil = self.inventory
+        return spoil
 
     def attack(self, target):
         if target.defence > self.atk:
@@ -83,7 +84,9 @@ class Hero(Character):
         self.inventory.append(drop_item)
 
     def equip_on(self):
-        input("Do you wish to equip this item? Yes: Y or No: N \n")
+        choice = input("Do you wish to equip this item? Yes: Y or No: N \n")
+        if choice == "Y".lower():
+            pass
 
     def run_away(self):
         pass

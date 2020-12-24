@@ -38,8 +38,9 @@ def main():
     # ---------[ Items for the game ]--------------------
     pot = create_item('Potions', 'Basic Potion')
     pot = Potion(pot[0], pot[1], pot[2], pot[3], pot[4])
-    basic_sword = create_item('Weapons', 'Basic_Sword')
-    basic_sword = Weapon(basic_sword[0], basic_sword[1], basic_sword[2], basic_sword[3])
+
+    woodsword = create_item('Weapons', 'Wooden_Sword')
+    woodsword = Weapon(woodsword[0], woodsword[1], woodsword[2], woodsword[3] )
     # ---------------------------------------------------
 
     cls()
@@ -48,7 +49,7 @@ def main():
     create_hero()
     cls()
     hero = Hero(name=Hero.name, hp=100, maxhp=100, mp=1, maxmp=1, atk=160, defence=20, inventory=[], lvl=1, exp=0,
-                maxexp=25, equip=[])
+                maxexp=25, equip=[woodsword])
 
     input(f"Welcome {hero.name} to a world of magic.\n"
           f"You have just decided to leave your small town of Falkenville.\n"

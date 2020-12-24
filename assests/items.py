@@ -21,6 +21,9 @@ class Weapon(Item):
         self.atk = atk
         Item.__init__(self, name, description, value)
 
+    def __repr__(self):
+        return self.name
+
     def __str__(self):
         return f"=" * 32 + \
                f"\n{self.name:^32}" \
@@ -28,6 +31,8 @@ class Weapon(Item):
                f"\n{self.description}" \
                f"\nValue: {self.value}" \
                f"\nDamage: {self.atk}"
+
+
 
 
 class Potion(Item):

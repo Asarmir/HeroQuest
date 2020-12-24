@@ -1,5 +1,5 @@
 from users.char import Character, Hero
-from assests.items import Potion
+from assests.items import Potion, Weapon
 from theworld.map import World
 import json
 import os
@@ -54,28 +54,13 @@ def battle(hero):
             monsters.stat()
             if monsters.hp <= 0:
                 monsters.death()
+                spoil = monsters.remove_inventory()
+                input(f"{monsters.name} dropped {spoil.name}")
+                hero.add_inventory(spoil)
                 hero.gain_exp(monsters)
                 World.ig_map[World.userY][World.userX] = "H"
                 input("Press enter to continue")
                 break
-
-            else:
-                cls()
-
-                input(f"{monsters.name} growls and lashes out.")
-                monsters.attack(hero)
-                hero.stat()
-                if hero.hp <= 0:
-                    hero.death()
-                    input("What!!!")
-                    break
-                monsters.stat()
-                if monsters.hp <= 0:
-                    monsters.death()
-                    hero.gain_exp(monsters)
-                    World.ig_map[World.userY][World.userX] = "H"
-                    input("Press enter to continue")
-                    break
 
         elif choice == "P".lower():
             for item in hero.inventory:
@@ -106,15 +91,25 @@ class MonsterCreate:
 
     @staticmethod
     def monster_choice():
-        Goblin = Character('Goblin', hp=100, maxhp=100, mp=5, maxmp=5, atk=10, defence=10, inventory=None,
+        pot = create_item('Potions', 'Basic Potion')
+        pot = Potion(pot[0], pot[1], pot[2], pot[3], pot[4])
+        pot.quantity = 5
+        # ---------[ Weapons for the game ] -------------------------------------------
+        basic_sword = create_item('Weapons', 'Basic_Sword')
+        basic_sword = Weapon(basic_sword[0], basic_sword[1], basic_sword[2], basic_sword[3])
+        skull_splitter = create_item('Weapons', 'Skull_Splitter')
+        skull_splitter = Weapon(skull_splitter[0], skull_splitter[1], skull_splitter[2], skull_splitter[3])
+        # ------------------------------------------------------------------------------
+
+        Goblin = Character('Goblin', hp=100, maxhp=100, mp=5, maxmp=5, atk=10, defence=10, inventory=basic_sword,
                            exp=25)
         Ogre = Character('Orge', hp=250, maxhp=250, mp=5, maxmp=5, atk=45, defence=60,
-                         inventory={'Skull Splitter': 115},
+                         inventory=skull_splitter,
                          exp=75)
         Cave_Worm = Character('Cave Worm', hp=350, maxhp=350, mp=5, maxmp=5, atk=60, defence=100,
-                              inventory={'Potion': 5}, exp=120)
+                              inventory=pot, exp=120)
         Spider = Character('Cave Spider', hp=350, maxhp=350, mp=5, maxmp=5, atk=60, defence=100,
-                           inventory={'Potion': 5}, exp=120)
+                           inventory=pot, exp=120)
         Demon = Character('Demon', hp=500, maxhp=500, mp=5, maxmp=5, atk=120, defence=100, inventory={},
                           exp=500)
 
