@@ -122,7 +122,7 @@ class Hero(Character):
         print('=' * 32)
         print(f'Atk: {self.atk}  Def: {self.defence}' + ' ' * 5 + f'| Exp: {self.exp}/{self.maxexp}')
         print('=' * 32)
-        print(f"{f'Equipment: {self.equip}':^32}")
+        print(f"{f'Equipment: {self.equip}':^15} | Inventory: {self.inventory}")
         print('=' * 32)
 
 

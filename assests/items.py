@@ -37,7 +37,13 @@ class Potion(Item):
         Item.__init__(self, name, description, value)
 
     def heal_hero(self, hero):
-        hero.hp = self.heal + hero.hp
+        for item in hero.inventory:
+            if item.quantity > 0:
+                hero.hp = self.heal + hero.hp
+                input(f"You slam back a potion like a cold one.\n"
+                      f"It heals you for {self.heal}")
+            elif self.quantity == 0:
+                input("You don't have a drop of Potion on you and your body could use a drink.")
 
     def __str__(self):
         return f"=" * 32 + \
@@ -45,7 +51,11 @@ class Potion(Item):
                f"\n" + "=" * 32 + \
                f"\n{self.description}" \
                f"\nValue: {self.value}" \
-               f"\nDamage: {self.heal}"
+               f"\nHeal: {self.heal}" \
+               f"Quantity: {self.quantity}"
+
+    def __repr__(self):
+        return ":".join([self.name, str(self.quantity)])
 
 
 """with open('item.json', 'r')as f:

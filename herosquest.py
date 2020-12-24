@@ -1,28 +1,8 @@
-# Python Packages
-import os
-
+from assests.assests import *
 from assests.items import *
-### Game files that need to be imported ###
-from users.char import *
-from theworld.map import World
-from users.monsters import MonsterCreate
+from users.char import Hero
 
 
-def json_load(filepath, filename):
-    with open(f"{filepath}/{filename}.json", "r") as f:
-        data = json.load(f)
-        f.close()
-    print('Loading World assests')
-    return data
-
-
-def create_item(types, name):
-    item_data = json_load('assests', 'item')
-
-    item = item_data[types][name]
-    for val in item:
-        stuff = list(val.values())
-        return stuff
 
 
 def title():
@@ -48,74 +28,6 @@ def title():
             break
 
 
-def create_hero():
-    Hero.name = input("What is thy name hero?\n")
-    return Hero.name
-
-
-def cls():
-    os.system('cls' if os.name == 'nt' else 'clear')
-
-
-def battle(hero):
-    fight = True
-    cls()
-    monsters = MonsterCreate.monster_choice()
-
-    while fight:
-        cls()
-        choice = input("What do you wish to do? Fight: F Potion: P Run: R\n")
-        if choice == "F".lower():
-            hero.stat()
-            if hero.hp <= 0:
-                hero.death()
-                input("What!!!")
-                break
-            hero.attack(monsters)
-            monsters.stat()
-            if monsters.hp <= 0:
-                monsters.death()
-                hero.gain_exp(monsters)
-                World.ig_map[World.userY][World.userX] = "H"
-                input("Press enter to continue")
-                break
-
-            else:
-                cls()
-
-                input(f"{monsters.name} growls and lashes out.")
-                monsters.attack(hero)
-                hero.stat()
-                if hero.hp <= 0:
-                    hero.death()
-                    input("What!!!")
-                    break
-                monsters.stat()
-                if monsters.hp <= 0:
-                    monsters.death()
-                    hero.gain_exp(monsters)
-                    World.ig_map[World.userY][World.userX] = "H"
-                    input("Press enter to continue")
-                    break
-
-        elif choice == "P".lower():
-            print(f"You drink a potion.")
-            Potion.heal_hero(Hero)
-        else:
-            continue
-
-
-def pick_item(hero, drop_item):
-    if World.ig_map[World.userY][World.userX] == "P":
-        choice = input("Do you wish to pick up item? Yes: Y or No: N \n")
-        if choice == "Y".lower():
-            hero.add_inventory(drop_item)
-            World.ig_map[World.userY][World.userX] = "H"
-            print(f"You picked up {hero.inventory[0].name} {hero.inventory[0].description}")
-            World.pause_it()
-
-        if choice == "N".lower():
-            print(f"You decide against picking up {drop_item['Basic Potion']}")
 
 
 def main():
@@ -123,22 +35,27 @@ def main():
     Woodswd = Weapon(item[0], item[1], item[2], item[3])
     This is how we create items using the function above.
     """
-
+    # ---------[ Items for the game ]--------------------
+    pot = create_item('Potions', 'Basic Potion')
+    pot = Potion(pot[0], pot[1], pot[2], pot[3], pot[4])
+    basic_sword = create_item('Weapons', 'Basic_Sword')
+    basic_sword = Weapon(basic_sword[0], basic_sword[1], basic_sword[2], basic_sword[3])
+    # ---------------------------------------------------
 
     cls()
     title()
     cls()
     create_hero()
     cls()
-    hero = Hero(name=Hero.name, hp=12, maxhp=12, mp=1, maxmp=1, atk=80, defence=10, inventory=[], lvl=1, exp=0,
-                maxexp=25, equip={})
+    hero = Hero(name=Hero.name, hp=100, maxhp=100, mp=1, maxmp=1, atk=160, defence=20, inventory=[], lvl=1, exp=0,
+                maxexp=25, equip=[])
 
     input(f"Welcome {hero.name} to a world of magic.\n"
           f"You have just decided to leave your small town of Falkenville.\n"
           f"You have a can do attitude for fame and fortune.\n"
           f"Flexing your bicep you feel ready to take on any monsters.\n"
           f"Press enter to continue.")
-    
+
     cls()
     moving = True
     World.hero_location()
@@ -150,14 +67,10 @@ def main():
         if World.event and World.atk == True:
             battle(hero)
         elif World.event == True and World.atk == False:
-            pot = create_item('Potions', 'Basic Potion')
-            pot = Potion(pot[0], pot[1], pot[2], pot[3], pot[4])
-            drop_item = pot
-            pick_item(hero, drop_item)
+            pick_item(hero, pot)
         else:
             World.atk = False
 
 
 if __name__ == "__main__":
     main()
-
