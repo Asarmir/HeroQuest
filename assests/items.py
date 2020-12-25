@@ -15,14 +15,14 @@ class Item:
                f"\n" + "=" * 32 + \
                f"\n{self.description}\nValue: {self.value}\n"
 
+    def __repr__(self):
+        return self.name
+
 
 class Weapon(Item):
     def __init__(self, name, description, value, atk):
         self.atk = atk
         Item.__init__(self, name, description, value)
-
-    def __repr__(self):
-        return self.name
 
     def __str__(self):
         return f"=" * 32 + \
@@ -33,8 +33,6 @@ class Weapon(Item):
                f"\nDamage: {self.atk}"
 
 
-
-
 class Potion(Item):
     def __init__(self, name, description, value, heal, quantity):
         self.quantity = quantity
@@ -43,12 +41,16 @@ class Potion(Item):
 
     def heal_hero(self, hero):
         for item in hero.inventory:
-            if item.quantity > 0:
+            if item.name == 'Basic Potion' and item.quantity > 0:
                 hero.hp = self.heal + hero.hp
                 input(f"You slam back a potion like a cold one.\n"
                       f"It heals you for {self.heal}")
-            elif self.quantity == 0:
-                input("You don't have a drop of Potion on you and your body could use a drink.")
+                item.quantity -= 1
+
+            elif item.name == 'Basic Potion' and item.quantity == 0:
+                input("You reach for a drink but there not a bottle in sight.\n"
+                  "You grit your teeth for the beating that coming.")
+                break
 
     def __str__(self):
         return f"=" * 32 + \

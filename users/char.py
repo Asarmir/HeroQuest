@@ -83,10 +83,22 @@ class Hero(Character):
     def add_inventory(self, drop_item):
         self.inventory.append(drop_item)
 
-    def equip_on(self):
-        choice = input("Do you wish to equip this item? Yes: Y or No: N \n")
-        if choice == "Y".lower():
-            pass
+    def equipped_weapon(self):
+        self.atk = self.atk + self.equip[0].atk
+        return self.atk
+
+    def equip_on(self, hero, spoil):
+        if hero.equip[0].atk < spoil.atk:
+            choice = input(f"{spoil.name} is stronger than your current weapon {self.equip[0].name}.\n"
+                           f"Would you like to equip? Yes: Y or No: N")
+            if choice == "Y".lower():
+                self.equip.pop()
+                self.atk = 10
+                self.equip.append(spoil)
+                hero.equipped_weapon()
+                print(f"{hero.name} using his vast wisdom has equipped {self.equip}")
+            else:
+                print("You must live with your choice.")
 
     def run_away(self):
         pass

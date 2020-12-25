@@ -53,24 +53,28 @@ def battle(hero):
             hero.attack(monsters)
             monsters.stat()
             if monsters.hp <= 0:
+                cls()
                 monsters.death()
                 spoil = monsters.remove_inventory()
                 input(f"{monsters.name} dropped {spoil.name}")
                 hero.add_inventory(spoil)
+                hero.equip_on(hero, spoil)
                 hero.gain_exp(monsters)
                 World.ig_map[World.userY][World.userX] = "H"
-                input("Press enter to continue")
+                World.pause_it()
                 break
+            World.pause_it()
+            hero.stat()
+            monsters.attack(hero)
+            monsters.stat()
+            hero.stat()
+            monsters.stat()
 
         elif choice == "P".lower():
             for item in hero.inventory:
-                if item.name == pot.name:
+                if item.name == 'Basic Potion':
                     pot.heal_hero(hero)
-                    pot.quantity -= 1
                     hero.stat()
-            else:
-                print("You reach for a drink but there not a bottle in sight.\n"
-                          "You grit your teeth for the beating that coming.")
 
 
 def pick_item(hero, drop_item):
@@ -80,7 +84,7 @@ def pick_item(hero, drop_item):
             drop_item.quantity = 5
             hero.add_inventory(drop_item)
             World.ig_map[World.userY][World.userX] = "H"
-            print(f"You picked up {hero.inventory[0].name} {hero.inventory[0].description}")
+            print(f"You picked up {drop_item.name} {drop_item.description}")
             World.pause_it()
 
         if choice == "N".lower():
