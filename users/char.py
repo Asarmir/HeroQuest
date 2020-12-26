@@ -47,7 +47,7 @@ class Character:
 
     def death(self):
         if self.hp <= 0:
-            print(f'{self.name} has died')
+            print(f'\n{self.name} has died')
 
     def stat(self):
         print('\n')

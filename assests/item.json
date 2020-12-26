@@ -30,7 +30,7 @@
             "name": "Basic Potion",
             "description": "Just enough healing to not make it hurt.",
             "value": 0,
-            "heal": 10,
+            "heal": 50,
             "quantity": 0
         }]
     }

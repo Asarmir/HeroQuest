@@ -43,6 +43,7 @@ def battle(hero):
 
     while fight:
         cls()
+        hero.stat()
         choice = input("What do you wish to do? Fight: F Potion: P Run: R\n")
         if choice == "F".lower():
             hero.stat()
@@ -67,8 +68,7 @@ def battle(hero):
             hero.stat()
             monsters.attack(hero)
             monsters.stat()
-            hero.stat()
-            monsters.stat()
+            World.pause_it()
 
         elif choice == "P".lower():
             for item in hero.inventory:
