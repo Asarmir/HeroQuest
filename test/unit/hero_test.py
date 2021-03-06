@@ -36,15 +36,5 @@ class CharacterTest(TestCase):
         self.assertEqual(25, hero.maxexp)
         self.assertEqual([], hero.equip)
 
-    def test_equip_on(self):
-        """"Setting up character"""
-        woodsword = create_item('Weapons', 'Wooden_Sword')
-        woodsword = Weapon(woodsword[0], woodsword[1], woodsword[2], woodsword[3])
-        hero = Hero(name=Hero.name, hp=100, maxhp=100, mp=1, maxmp=1, atk=10, defence=20, inventory=[], lvl=1, exp=0, maxexp=25, equip=[woodsword])
-
-        """Item I want equip"""
-        basic_sword = create_item('Weapons', 'Basic_Sword')
-        basic_sword = Weapon(basic_sword[0], basic_sword[1], basic_sword[2], basic_sword[3])
-        spoil = basic_sword
-
-        assests.equip_on(spoil)
+    
+        

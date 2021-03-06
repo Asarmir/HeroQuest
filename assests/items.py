@@ -43,12 +43,12 @@ class Potion(Item):
         for item in hero.inventory:
             if item.name == 'Basic Potion' and item.quantity > 0:
                 hero.hp = self.heal + hero.hp
-                input(f"You slam back a potion like a cold one.\n"
+                print(f"You slam back a potion like a cold one.\n"
                       f"It heals you for {self.heal}")
                 item.quantity -= 1
 
             elif item.name == 'Basic Potion' and item.quantity == 0:
-                input("You reach for a drink but there not a bottle in sight.\n"
+                print("You reach for a drink but there not a bottle in sight.\n"
                   "You grit your teeth for the beating that coming.")
                 break
 
